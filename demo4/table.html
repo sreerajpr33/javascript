@@ -26,9 +26,17 @@
         background-color: rgb(180, 132, 225);
         width: 30vw;
         margin-top: 30px;
-        height: 33vh;
+        height: 20vh;
         text-align: center;
-        padding-top: 50px;
+        margin: auto;
+      }
+      .conatiner2 {
+        background-color: rgb(105, 222, 136);
+        width: 30vw;
+        margin-top: 30px;
+        height: 20vh;
+        text-align: center;
+        margin: auto;
       }
       .child1 {
         margin-top: 20px;
@@ -60,44 +68,35 @@
   </head>
   <body>
     <div class="container">
-      <table>
+      <table id="people">
+        <thead>
         <tr>
           <th>ID</th>
           <th>NAME</th>
           <th>AGE</th>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
+          </tr>
+        </thead>
+        <tbody></tbody>
       </table>
     </div>
 
     <div class="conatiner1">
-      <div class="child1">
-        <label for="id">ID</label>
-        <input type="number" id="id" />
-      </div>
-      <div class="child2">
-        <label for="name">NAME</label>
-        <input type="text" id="name" />
-      </div>
-      <div class="child3">
-        <label for="age">AGE</label>
-        <input type="number" id="age" />
-      </div>
-      <button>SUBMIT</button>
+      <form id="submitform">
+       <H1>ADD</H1>
+        <input type="number" id="id" placeholder="id" />
+        <input type="text" id="name" placeholder="name" />
+        <input type="number" id="age" placeholder="age" />
+        <input type="submit">
+      </form>
+    </div>
+    <div class="conatiner2">
+      <form id="editform">
+       <H1>EDIT</H1>
+        <input type="number" id="id" placeholder="id" />
+        <input type="text" id="name" placeholder="name" />
+        <input type="number" id="age" placeholder="age" />
+        <input type="submit">
+      </form>
     </div>
     <script src="./table.js"></script>
   </body>
