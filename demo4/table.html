@@ -37,6 +37,7 @@
         height: 20vh;
         text-align: center;
         margin: auto;
+        display: none;
       }
       .child1 {
         margin-top: 20px;
@@ -80,7 +81,7 @@
       </table>
     </div>
 
-    <div class="conatiner1">
+    <div class="conatiner1" id="container1">
       <form id="submitform">
        <H1>ADD</H1>
         <input type="number" id="id" placeholder="id" />
@@ -89,12 +90,12 @@
         <input type="submit">
       </form>
     </div>
-    <div class="conatiner2">
+    <div class="conatiner2" id="container2">
       <form id="editform">
        <H1>EDIT</H1>
-        <input type="number" id="id" placeholder="id" />
-        <input type="text" id="name" placeholder="name" />
-        <input type="number" id="age" placeholder="age" />
+        <input type="number" id="e_id" placeholder="id" />
+        <input type="text" id="e_name" placeholder="name" />
+        <input type="number" id="e_age" placeholder="age" />
         <input type="submit">
       </form>
     </div>
