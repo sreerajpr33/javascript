@@ -1,4 +1,4 @@
-a=[{id:123,name:'s',age:10,email:'s@gmail.com',course:'python',date:'12-12-2024'},
+let a=[{id:123,name:'s',age:10,email:'s@gmail.com',course:'python',date:'12-12-2024'},
     {id:124,name:'r',age:13,email:'r@gmail.com',course:'flutr',date:'12-12-2025'},
     {id:125,name:'i',age:11,email:'i@gmail.com',course:'bca',date:'12-12-2022'},
     {id:126,name:'k',age:12,email:'k@gmail.com',course:'python',date:'12-12-2026'}]
@@ -33,7 +33,70 @@ function display(){
         t_date.textContent=element.date
         t_row.appendChild(t_date)
 
+        const edit_td=document.createElement('td')
+        const edit_btn=document.createElement('button')
+        edit_btn.textContent="edit"
+        edit_btn.onclick=function(){
+            edit_form(element.id)
+        }
+
+        edit_td.appendChild(edit_btn)
+        t_row.appendChild(edit_td)
+        
+
         t_var.appendChild(t_row)
-    })
+    });
+document.getElementById('add').addEventListener('submit',function(event){
+    event.preventDefault()
+    const id=parseInt(document.getElementById('id').value)
+    const name=document.getElementById('name').value
+    const age=parseInt(document.getElementById('age').value)
+    const email=document.getElementById('email').value
+    const course=document.getElementById('course').value
+    const date=document.getElementById('date').value
+    a.push({id:id,name:name,age:age,email:email,course:course,date:date})
+    document.getElementById('id').value=''
+    document.getElementById('name').value=''
+    document.getElementById('age').value=''
+    document.getElementById('email').value=''
+    document.getElementById('course').value=''
+    document.getElementById('date').value=''
+    display()
+})
 }
+let edit_id=""
+function edit_form(id){
+    console.log('editing',id)
+    document.getElementById('edit').style.display='block'
+    document.getElementById('add').style.display='none'
+    const edit_data=a.find(user=>user.id==id)
+    // document.getElementById('e_id').value=edit_data.id
+    document.getElementById('e_name').value=edit_data.name
+    document.getElementById('e_age').value=edit_data.age
+    document.getElementById('e_email').value=edit_data.email
+    document.getElementById('e_course').value=edit_data.course
+    document.getElementById('e_date').value=edit_data.date
+    edit_id=id
+}
+document.getElementById('edit').addEventListener('submit',function(event){
+    event.preventDefault()
+    // const e_id=document.getElementById('e_id').value
+    const e_name=document.getElementById('e_name').value
+    const e_age=document.getElementById('e_age').value
+    const e_email=document.getElementById('e_email').value
+    const e_course=document.getElementById('e_course').value
+    const e_date=document.getElementById('e_date').value
+
+    a=a.map(user=>{
+        console.log(user);
+        
+        if(user.id==edit_id){
+            return{...user,name:e_name,age:e_age,email:e_email,course:e_course,date:e_date}
+        }
+        return user
+    })
+    document.getElementById('edit').style.display='none'
+    document.getElementById('add').style.display='block'
+    display()
+})
 display()
