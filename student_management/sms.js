@@ -4,8 +4,10 @@ let a=[{id:123,name:'s',age:10,email:'s@gmail.com',course:'python',date:'12-12-2
     {id:126,name:'k',age:12,email:'k@gmail.com',course:'python',date:'12-12-2026'}]
 
 function display(){
+    // console.log('up',a);
+    
     const t_var=document.querySelector('#sms tbody')
-    t_var.innerHtml=''
+    t_var.innerHTML=''
     a.forEach(element =>{
         const t_row=document.createElement('tr')
 
@@ -42,10 +44,21 @@ function display(){
 
         edit_td.appendChild(edit_btn)
         t_row.appendChild(edit_td)
+
+        const del_td=document.createElement('td')
+        const del_btn=document.createElement('button')
+        del_btn.textContent='delete'
+        del_btn.onclick=function(){
+            delete_data(element.id)
+        }
+        del_td.appendChild(del_btn)
+        t_row.appendChild(del_td)
+        t_var.appendChild(t_row)
         
 
         t_var.appendChild(t_row)
     });
+}
 document.getElementById('add').addEventListener('submit',function(event){
     event.preventDefault()
     const id=parseInt(document.getElementById('id').value)
@@ -63,10 +76,10 @@ document.getElementById('add').addEventListener('submit',function(event){
     document.getElementById('date').value=''
     display()
 })
-}
+
 let edit_id=""
 function edit_form(id){
-    console.log('editing',id)
+    // console.log('editing',id)
     document.getElementById('edit').style.display='block'
     document.getElementById('add').style.display='none'
     const edit_data=a.find(user=>user.id==id)
@@ -76,27 +89,37 @@ function edit_form(id){
     document.getElementById('e_email').value=edit_data.email
     document.getElementById('e_course').value=edit_data.course
     document.getElementById('e_date').value=edit_data.date
-    edit_id=id
+    edit_id=edit_data.id
 }
 document.getElementById('edit').addEventListener('submit',function(event){
     event.preventDefault()
-    // const e_id=document.getElementById('e_id').value
     const e_name=document.getElementById('e_name').value
     const e_age=document.getElementById('e_age').value
     const e_email=document.getElementById('e_email').value
     const e_course=document.getElementById('e_course').value
     const e_date=document.getElementById('e_date').value
-
-    a=a.map(user=>{
-        console.log(user);
-        
+    // console.log('editing_id',typeof edit_id);
+    
+    a=a.map(user => {
         if(user.id==edit_id){
-            return{...user,name:e_name,age:e_age,email:e_email,course:e_course,date:e_date}
+            // console.log(typeof user.id ,user);
+            return{...user,name:e_name,age:e_age,email:e_email,course:e_course,date:e_date,id:edit_id}
         }
         return user
     })
+    // console.log(b);
+    
     document.getElementById('edit').style.display='none'
     document.getElementById('add').style.display='block'
     display()
 })
+function delete_data(id){
+    a=a.filter(user=>{
+        if(user.id!=id){
+            return user
+        }
+    })
+    display()
+    
+}
 display()
